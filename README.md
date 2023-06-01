@@ -16,3 +16,6 @@ add secret to github project Examp DOCKERHUB_TOKEN and DOCKERHUB_USER
 ## create a config file at .github/workflows/checks.yml
 #step1 set trigger
 #step2 add steps for running and testing linting
+
+## Run test in docker
+docker-compose run --rm app sh -c "python manage.py test"
