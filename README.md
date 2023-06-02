@@ -12,8 +12,8 @@ docker-compose build
 flake8 tool used for test and linting.
 docker-compose run --rm app sh -c "flake8"
 
-# create django project
-docker-compose run --rm app sh -c "django-admin startproject app .*"
+# create django project or add django files in the project
+docker-compose run --rm app sh -c "django-admin startproject app ."
 
 # Github action and docker (https://docs.docker.com/build/ci/github-actions/)
 Signup hub.docker.com
@@ -27,3 +27,6 @@ add secret to github project Examp DOCKERHUB_TOKEN and DOCKERHUB_USER
 
 ## Run lint and unit test with  docker
 docker-compose run --rm app sh -c "python manage.py test"
+
+## Run development server
+docker-compose up
