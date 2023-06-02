@@ -1,7 +1,15 @@
 # python-django-rest-api
 Python Django Recipe Api
 
+
+
+# Test to create Docker Image
+docker build .
+docker-compose up
+docker-compose build
+
 # run linting
+flake8 tool used for test and linting.
 docker-compose run --rm app sh -c "flake8"
 
 # create django project
@@ -17,5 +25,5 @@ add secret to github project Examp DOCKERHUB_TOKEN and DOCKERHUB_USER
 #step1 set trigger
 #step2 add steps for running and testing linting
 
-## Run test in docker
+## Run lint and unit test with  docker
 docker-compose run --rm app sh -c "python manage.py test"
