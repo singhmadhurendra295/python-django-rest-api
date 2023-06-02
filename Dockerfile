@@ -20,14 +20,8 @@ RUN python -m venv /py
 RUN /py/bin/pip install --upgrade pip
 RUN /py/bin/pip install -r /tmp/requirements.txt
 # Perform instructions conditionally based on the value of ARG
-RUN if [ "$DEV" = "true" ]; then \
-    echo "Running in development environment"; \
-    RUN py/bin/pip install -r /tmp/requirements.dev.txt ; \
-    else \
-    echo "Running in production environment"; \
-    # Add production-specific instructions here \
-    fi
-RUN rm -rf /tmp
+RUN /bin/sh -c 'if [ "$DEV" = "true" ]; then /py/bin/pip install -r /tmp/requirements.dev.txt; fi' \
+    && rm -rf /tmp
 RUN adduser --disabled-password --no-create-home django-user
 
 ENV PATH="/py/bin:$PATH"
