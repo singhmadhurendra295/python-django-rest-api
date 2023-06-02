@@ -16,9 +16,9 @@ WORKDIR /app
 EXPOSE 8000
 
 ARG DEV=false
-RUN python -m venv py
-RUN py/bin/pip install --upgrade pip
-RUN py/bin/pip install -r /tmp/requirements.txt
+RUN python -m venv /py
+RUN /py/bin/pip install --upgrade pip
+RUN /py/bin/pip install -r /tmp/requirements.txt
 # Perform instructions conditionally based on the value of ARG
 RUN if [ "$DEV" = "true" ]; then \
     echo "Running in development environment"; \
@@ -27,3 +27,8 @@ RUN if [ "$DEV" = "true" ]; then \
     echo "Running in production environment"; \
     # Add production-specific instructions here \
     fi
+RUN rm -rf /tmp
+RUN adduser --disabled-password --no-create-home django-user
+
+ENV PATH="/py/bin:$PATH"
+USER django-user
