@@ -29,4 +29,13 @@ add secret to github project Examp DOCKERHUB_TOKEN and DOCKERHUB_USER
 docker-compose run --rm app sh -c "python manage.py test"
 
 ## Run development server
+docker-compose build
 docker-compose up
+
+
+## Remove docker containers
+PS E:\python-django-rest-api> docker-compose down
+[+] Running 3/3
+ ✔ Container python-django-rest-api-app-1  Removed                                                                 0.0s
+ ✔ Container python-django-rest-api-db-1   Removed                                                                 0.0s
+ ✔ Network python-django-rest-api_default  Removed

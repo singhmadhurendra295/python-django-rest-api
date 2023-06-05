@@ -18,10 +18,14 @@ EXPOSE 8000
 ARG DEV=false
 RUN python -m venv /py
 RUN /py/bin/pip install --upgrade pip
+RUN apk add --update --no-cache postgresql-client jpeg-dev && \
+    apk add --update --no-cache --virtual .tmp-build-deps \
+        build-base postgresql-dev musl-dev zlib zlib-dev linux-headers
 RUN /py/bin/pip install -r /tmp/requirements.txt
 # Perform instructions conditionally based on the value of ARG
 RUN /bin/sh -c 'if [ "$DEV" = "true" ]; then /py/bin/pip install -r /tmp/requirements.dev.txt; fi' \
-    && rm -rf /tmp
+    && rm -rf /tmp \
+    && apk del .tmp-build-deps
 RUN adduser --disabled-password --no-create-home django-user
 
 ENV PATH="/py/bin:$PATH"
