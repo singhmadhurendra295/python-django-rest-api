@@ -39,3 +39,7 @@ PS E:\python-django-rest-api> docker-compose down
  ✔ Container python-django-rest-api-app-1  Removed                                                                 0.0s
  ✔ Container python-django-rest-api-db-1   Removed                                                                 0.0s
  ✔ Network python-django-rest-api_default  Removed
+
+
+## create core app
+docker-compose run --rm app sh -c "python manage.py startapp core"
