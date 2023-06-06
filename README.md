@@ -43,3 +43,6 @@ PS E:\python-django-rest-api> docker-compose down
 
 ## create core app
 docker-compose run --rm app sh -c "python manage.py startapp core"
+
+## Run test locally
+docker-compose run --rm app sh -c "python manage.py test"
