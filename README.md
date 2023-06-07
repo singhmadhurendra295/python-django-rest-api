@@ -46,3 +46,62 @@ docker-compose run --rm app sh -c "python manage.py startapp core"
 
 ## Run test locally
 docker-compose run --rm app sh -c "python manage.py test"
+
+[+] Running 1/0ango-rest-api> docker-compose run --rm app sh -c "python manage.py test"
+ ✔ Container python-django-rest-api-db-1  Running                                                                                0.0s
+Found 2 test(s).
+System check identified no issues (0 silenced).
+Waiting for database...
+Database unavailable, waiting 1 second...
+Database unavailable, waiting 1 second...
+Database unavailable, waiting 1 second...
+Database unavailable, waiting 1 second...
+Database unavailable, waiting 1 second...
+Database available!
+.Waiting for database...
+Database available!
+.
+----------------------------------------------------------------------
+Ran 2 tests in 0.030s
+
+OK
+PS E:\python-django-rest-api> docker-compose run --rm app sh -c "python manage.py wait_for_db"
+[+] Running 1/0
+ ✔ Container python-django-rest-api-db-1  Running                                                                                0.0s
+Waiting for database...
+Database available!
+
+
+## Run linter 
+
+PS E:\python-django-rest-api> docker-compose run --rm app sh -c "python manage.py wait_for_db && flake8"
+[+] Running 1/0
+ ✔ Container python-django-rest-api-db-1  Running                                                                                0.0s
+Waiting for database...
+Database available!
+./core/admin.py:1:1: F401 'django.contrib.admin' imported but unused
+./core/models.py:1:1: F401 'django.db.models' imported but unused
+./core/management/commands/wait_for_db.py:27:69: W292 no newline at end of file
+./core/tests/test_commands.py:34:64: W292 no newline at end of file
+
+
+[+] Running 1/0ango-rest-api> docker-compose run --rm app sh -c "python manage.py test && flake8"
+ ✔ Container python-django-rest-api-db-1  Running                                                                                0.0s
+Found 2 test(s).
+System check identified no issues (0 silenced).
+Waiting for database...
+Database unavailable, waiting 1 second...
+Database unavailable, waiting 1 second...
+Database unavailable, waiting 1 second...
+Database unavailable, waiting 1 second...
+Database unavailable, waiting 1 second...
+Database available!
+.Waiting for database...
+Database available!
+.
+----------------------------------------------------------------------
+Ran 2 tests in 0.220s
+
+OK
+./core/admin.py:1:1: F401 'django.contrib.admin' imported but unused
+./core/models.py:1:1: F401 'django.db.models' imported but unused
