@@ -198,4 +198,23 @@ Running migrations:
   Applying admin.0003_logentry_add_action_flag_choices... OK
   Applying sessions.0001_initial... OK
 
+
+## django admin super user
+create super user 
+PS E:\python-django-rest-api> docker-compose run --rm app sh -c "python manage.py createsuperuser"
+[+] Running 1/0
+ ✔ Container python-django-rest-api-db-1  Running                                                                  0.0s
+Email: admin@example.com
+Password:
+Password (again):
+This password is too short. It must contain at least 8 characters.
+This password is too common.
+This password is entirely numeric.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+
+password 12345
+Go to http://localhost:8000/admin and login
+
+
   
